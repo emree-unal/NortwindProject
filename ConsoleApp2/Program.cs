@@ -9,10 +9,20 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var item in productManager.GetAll())
+            var result = productManager.GetAll();
+            if (result.Success)
             {
-                Console.WriteLine(item.ProductName);
+                foreach (var item in productManager.GetAll().Data)
+                {
+                    Console.WriteLine(item.ProductName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+           
            
         }
     }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using YazılımKampıKatmanlıMimari.Core.Utilities.Results;
 using YazılımKampıKatmanlıMimari.Entities;
 
 namespace YazılımKampıKatmanlıMimari.Business.Abstract
 {
     public interface IProductService
     {
-        List<Product> GetAll();
-        Product GetById(int id);
-        void Delete(Product product);
-        void Add(Product product);
-        void Update(Product product);
+        IDataResult<List<Product>>  GetAll();
+        IDataResult<Product>  GetById(int id);
+        IResult Delete(Product product);
+        IResult Add(Product product);
+        IResult Update(Product product);
     }
 }

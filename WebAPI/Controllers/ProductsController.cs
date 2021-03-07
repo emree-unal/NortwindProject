@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YazılımKampıKatmanlıMimari.Business.Abstract;
+using YazılımKampıKatmanlıMimari.Business.Constants;
+using YazılımKampıKatmanlıMimari.Core.Utilities.Results;
 using YazılımKampıKatmanlıMimari.Entities;
 
 namespace WebAPI.Controllers
@@ -21,33 +23,38 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public List<Product> Get()
+        public IDataResult<List<Product>> Get()
         {
-            return _productService.GetAll();
+            return new SuccessDataResult<List<Product>>(_productService.GetAll().Data,Messages.ProductListed);
         }
 
         [HttpGet("getbyid")]
-        public Product GetById(int id)
+        public IDataResult<Product> GetById(int id)
         {
-            return _productService.GetById(id);
+           
+            return new SuccessDataResult<Product>(_productService.GetById(id).Data, Messages.ProductListed);
         }
 
         [HttpPost("add")]
-        public void Add(Product product)
+        public IResult Add(Product product)
         {
              _productService.Add(product);
+            return new SuccessResult(Messages.ProductAdded);
         }
 
         [HttpPut("update")]
-        public void Update(Product product)
+        public IResult Update(Product product)
         {
             _productService.Update(product);
+            return new SuccessResult("Ürün güncellendi");
+
         }
 
         [HttpDelete("delete")]
-        public void Delete(Product product)
+        public IResult Delete(Product product)
         {
             _productService.Delete(product);
+            return new SuccessResult("Ürün Silindi");
         }
     }
 }

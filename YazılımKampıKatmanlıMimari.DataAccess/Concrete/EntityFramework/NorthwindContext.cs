@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using YazılımKampıKatmanlıMimari.Core.Entities.Concrete;
 using YazılımKampıKatmanlıMimari.Entities;
 
 namespace YazılımKampıKatmanlıMimari.DataAccess.Concrete.EntityFramework
@@ -14,5 +15,10 @@ namespace YazılımKampıKatmanlıMimari.DataAccess.Concrete.EntityFramework
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
     }
 }
