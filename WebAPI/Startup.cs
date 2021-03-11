@@ -14,6 +14,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using YazılımKampıKatmanlıMimari.Business.Abstract;
 using YazılımKampıKatmanlıMimari.Business.Concrete;
+using YazılımKampıKatmanlıMimari.Core.DependencyResolvers;
+using YazılımKampıKatmanlıMimari.Core.Extensions;
 using YazılımKampıKatmanlıMimari.Core.Utilities.IoC;
 using YazılımKampıKatmanlıMimari.Core.Utilities.Security.Encryption;
 using YazılımKampıKatmanlıMimari.Core.Utilities.Security.JWT;
@@ -54,7 +56,9 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
-            ServiceTool.Create(services);
+            services.AddDependencyResolvers(new ICoreModule[] { 
+            new CoreModule()
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
